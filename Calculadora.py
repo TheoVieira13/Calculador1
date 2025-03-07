@@ -1,39 +1,48 @@
-def somar(y, x):
-    return y + x
+def calculadora():
+    while True:
+        num_1 = input('Digite o primeiro numero: ')
+        num_2 = input('Digite o segundo numero numero: ')
+        operador = input('Digite o operador (+-/*): ')
 
-def subtrair(y, x):
-    return y - x
+        numeros_validos = None
 
-def multiplicacao(y, x):
-    return y * x
+        num_1_float = 0
+        num_2_float = 0
 
-def divisao(y, x):
-    if x != 0:
-        return y / x
-    else:
-        return 'Erro não e possivel dividir por 0'
-while True:
-    try:    
-        escolha = int(input("""1. Somar
-2. Subtrair
-3. Multiplicar
-4. Dividir 
-Digite sua escolha: """))
-        if escolha in [1, 2, 3, 4]:
-            break
+        try:
+            num_1_float = float(num_1)
+            num_2_float = float(num_2)
+            numeros_validos = True
+        except:
+            numeros_validos = None
+
+        if numeros_validos is None:
+            print('Um ou ambos os numeros digitados são invalidos. ')
+            continue
+
+        operadores_validos = '+-/*'
+
+        if operador not in operadores_validos:
+            print('Operador invalido.')
+
+        if len(operador) > 1:
+            print('Digite apenas um operador.')
+
+        if operador == '+':
+            print(f'{num_1_float} + {num_2_float} = {num_1_float + num_2_float}')
+        elif operador == '-':
+            print(f'{num_1_float} - {num_2_float} = {num_1_float - num_2_float}')
+        elif operador == '/':
+            if num_2_float == 0:
+                print('Não e possivel dividir por 0.')
+            else:
+                print(f'{num_1_float} / {num_2_float} = {num_1_float / num_2_float}')
         else:
-            print('Erro opção invalida escolha novamente.')
-    except ValueError:
-        print('Erro digite um numero valido.')
+            print(f'{num_1_float} * {num_2_float} = {num_1_float * num_2_float}')
+            
+        sair = input('Deseja sair? [S]im ').lower().startswith('s')
 
-num = float(input('Digite seu primeiro numero: '))
-num2 = float(input('Digite seu segundo numero: '))
-
-if escolha == 1:
-    print(f'{num} + {num2} = {somar(num, num2)}')
-elif escolha == 2:
-    print(f'{num} - {num2} = {subtrair(num, num2)}')
-elif escolha == 3:
-    print(f'{num} X {num2} = {multiplicacao(num, num2)}')
-elif escolha == 4:
-    print(f'{num} / {num2} = {divisao(num, num2)}')
+        if sair:
+            print('Finalizando!')
+            break
+calculadora()
