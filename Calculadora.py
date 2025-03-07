@@ -24,9 +24,11 @@ def calculadora():
 
         if operador not in operadores_validos:
             print('Operador invalido.')
+            continue
 
         if len(operador) > 1:
             print('Digite apenas um operador.')
+            continue
 
         if operador == '+':
             print(f'{num_1_float} + {num_2_float} = {num_1_float + num_2_float}')
